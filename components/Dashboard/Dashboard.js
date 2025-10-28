@@ -1,12 +1,8 @@
-import { redirect } from 'next/navigation';
 import ItemList from '@/components/Items/ItemList';
 import { getItems } from '@/lib/server/db/items';
 import s from './Dashboard.module.scss';
 
-export default async function Dashboard({ authenticated }) {
-  if (!authenticated) {
-    return redirect('/auth');
-  }
+export default async function Dashboard() {
   const items = await getItems();
 
   return (

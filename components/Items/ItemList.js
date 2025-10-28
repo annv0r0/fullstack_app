@@ -1,5 +1,3 @@
-// SERVER
-
 import Item from './Item';
 import s from './ItemList.module.scss';
 import Link from 'next/link';

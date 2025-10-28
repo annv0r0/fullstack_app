@@ -1,14 +1,7 @@
 import UploadFileForm from '@/components/Upload/UploadFileForm';
 import s from './page.module.scss';
-import { verifySessionCookie } from '@/lib/server/auth/verify_session_cookie';
-import { redirect } from 'next/navigation';
 
 export default async function UploadPage() {
-  const { authenticated } = await verifySessionCookie();
-  if (!authenticated) {
-    return redirect('/auth');
-  }
-
   return (
     <div className={s.container}>
       <h1 className={s.title}>UPLOAD DATA</h1>
@@ -23,8 +16,8 @@ export default async function UploadPage() {
               <th>unit</th>
               <th>price</th>
               <th>currency</th>
-              <th>availible</th>
-              <th>raiting</th>
+              <th>available</th>
+              <th>rating</th>
               <th>image</th>
             </tr>
           </thead>

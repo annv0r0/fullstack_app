@@ -2,31 +2,6 @@ import s from './page.module.scss';
 import Image from 'next/image';
 
 export default async function Home() {
-  // <SaveItem />
-  // - upload csv (article/id, title, description, wight, price/kg, description, availible, raiting)
-  // - upload image
-  // - send (save to BD) btn
-
-  // <ItemsList />
-  // - list of items from BD
-  // <AddToCart/> btn
-
-  // <AddToCart /> btn
-  // - db.take(article)
-  // - add to cart (?)
-
-  // <ShoppingCartPreview />
-  // - list of picked items
-  // -- amount of item
-  // -- <ChangeAmount /> btns
-  // -- <DeleteItem /> btn
-  // - total ammount
-  // - <GoToCart /> btn
-
-  // <ShoppingCart /> the same as  <ShoppingCartPreview /> but:
-  // - different design
-  // - <ProceedToCheckout /> btn instead of <GoToCart /> btn
-
   return (
     <main className={s.main}>
       <h1 className={s.title}>SUPER-DUPER FULLSTACK-APP</h1>

@@ -5,91 +5,56 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
+## [v0.2.0] — 2025-10-21
+
+### Authentication updates (Cognito + NextAuth.js)
+
+- Migrated from the custom auth system to **NextAuth.js v4**
+- Added **multi-provider authentication**:
+  - **Email/password** via AWS Cognito User Pool
+  - Google, Facebook, Yandex OAuth
+- Improved protected route handling and redirect logic
+- Improved CSV parsing and normalization
+
+---
+
 ## [v0.1.0] — 2025-10-15
 
 ### Initial MVP
 
-- Implemented custom **auth system** with email/password, secure hashing, and session cookies.
-- Added **server-only session validation** (HMAC-based `session_id` + DB check).
-- Built **file upload pipeline**:
-  - CSV upload → AWS S3 → server parsing → MongoDB insert.
-- Created dashboard and item list/detail views.
-- Environment configuration and working Next.js 15 setup.
-
----
-
-## [v0.2.0] — planned
-
-### Auth Revamp (Cognito / Federated)
-
-- Replace custom auth with **Amazon Cognito**.
-- Add federated logins (Google, Facebook, Yandex).
-- Keep session validation and cookies consistent with new provider.
+- Custom **email/password** authentication (secure hashing + session cookies)
+- Server-only session validation (HMAC-based `session_id` + DB lookup)
+- File upload pipeline:
+  - CSV → AWS S3 → server parsing → MongoDB insert
+- Dashboard + item list/detail views
+- Base Next.js 15 setup and environment config
 
 ---
 
 ## [v0.3.0] — planned
 
-### NextAuth / Auth.js migration
+### Database migration
 
-- Replace Cognito with NextAuth.js for local + OAuth.
-- Simplify session handling with NextAuth adapter for MongoDB.
+- Migrate to a relational database (SQLite, PostgreSQL)
+- Normalize schema (Users, Items, Uploads, Sessions)
 
 ---
 
 ## [v0.4.0] — planned
 
-### JWT-based custom auth
+### S3 storage and media
 
-- Stateless auth with JWT access & refresh tokens.
-- Secure cookie rotation and revocation logic.
+- Image upload + metadata linking
+- CSV storage optimization and processing improvements
 
 ---
 
 ## [v0.5.0] — planned
 
-### Database Migration
+### Parsing and data pipelines
 
-- Move from MongoDB to PostgreSQL (via Prisma ORM).
-- Normalize tables (Users, Items, Sessions, Uploads).
-- Data migration script.
-
----
-
-## [v0.6.0] — planned
-
-### GraphQL Layer
-
-- Add Apollo Server + GraphQL API for Items.
-- Replace REST endpoints with typed schema.
-
----
-
-## [v0.7.0] — planned
-
-### Caching & Scaling
-
-- Integrate Redis for session cache and query speed.
-- Add Docker-based local dev environment.
-
----
-
-## [v0.8.0] — planned
-
-### S3 Optimization
-
-- Stream large CSVs directly to parser.
-- Add presigned PUT URLs.
-- Improve upload status tracking.
-
----
-
-## [v0.9.0] — planned
-
-### Background Jobs
-
-- Add SQS / BullMQ worker for async parsing.
-- Retry and error handling system.
+- Stream large CSVs directly to parser
+- Retry/error tracking for file ingestion
 
 ---
 
@@ -97,8 +62,8 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ### Stable Release
 
-- Feature complete: Auth + DB + Storage.
-- CI/CD ready (GitHub Actions / Vercel).
-- Tagged as **v1.0.0**.
+- Feature complete: Auth + DB + Storage
+- CI/CD ready (GitHub Actions / Vercel)
+- Official **v1.0.0** release
 
 ---

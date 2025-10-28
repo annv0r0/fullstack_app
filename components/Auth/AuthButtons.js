@@ -1,41 +1,17 @@
-'use client';
+import { auth } from '@/auth';
 
-import { logout } from '@/actions/auth';
-import s from './AuthButtons.module.scss';
-import { useState } from 'react';
-import clsx from 'clsx';
+import s from './styles.module.scss';
 import Link from 'next/link';
+import Logout from './Logout';
 
-export default function AuthButtons({ authStatus }) {
-  const [activeBtn, setActiveBtn] = useState('signup');
+export default async function AuthButtons() {
+  const session = await auth();
 
-  if (!authStatus)
-    return (
-      <div className={s.authButtons}>
-        <Link
-          className={clsx(s.authButtons__btn, activeBtn === 'signin' ? s.active : '')}
-          href="/auth?mode=signin"
-          onClick={() => setActiveBtn('signin')}
-          type="button"
-        >
-          Sign in
-        </Link>
-        <Link
-          className={clsx(s.authButtons__btn, activeBtn === 'signup' ? s.active : '')}
-          href="/auth?mode=signup"
-          onClick={() => setActiveBtn('signup')}
-          type="button"
-        >
-          Sign up
-        </Link>
-      </div>
-    );
-  if (authStatus)
-    return (
-      <form action="/api/auth/logout">
-        <button className={s.authButtons__btn} type="submit">
-          Logout
-        </button>
-      </form>
-    );
+  if (session) return <Logout className={s.logout} />;
+
+  return (
+    <Link className={s.signin} href="/auth">
+      sign in | sign up
+    </Link>
+  );
 }

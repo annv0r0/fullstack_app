@@ -10,11 +10,9 @@ export async function upload(key) {
   try {
     const docs = await parseCSV(stream);
 
-    const records = await insertItems(docs);
-    if (records) return;
-    return records;
+    await insertItems(docs);
+    return { ok: true };
   } catch (e) {
-    console.log(e);
-    throw e;
+    return { ok: false, error: e.message || 'Upload failed' };
   }
 }

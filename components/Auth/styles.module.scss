@@ -1,0 +1,41 @@
+.signin {
+  color: chocolate;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    color: grey;
+  }
+}
+
+.logout {
+  width: 80px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.providers__btn {
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  background-color: #4caf50;
+  &:hover {
+    color: grey;
+  }
+}
+
+.providers__btn_local {
+  background-color: #fff;
+  color: gray;
+}

@@ -1,5 +1,3 @@
-// 'use client';
-
 import Image from 'next/image';
 import { addToCart } from '@/actions/cart';
 import { removeFromCart } from '@/actions/cart';
@@ -14,8 +12,8 @@ export default function Item({
   weight,
   unit,
   price,
-  availible,
-  raiting,
+  available,
+  rating,
   image,
   date,
 }) {
@@ -32,8 +30,8 @@ export default function Item({
           Weight: {weight}
           {unit}
         </p>
-        <p className={s.card__availible}>Available: {availible === 'TRUE' ? 'Yes' : 'No'}</p>
-        <p className={s.card__raiting}>Rating: {raiting} / 5</p>
+        <p className={s.card__available}>Available: {available === 'TRUE' ? 'Yes' : 'No'}</p>
+        <p className={s.card__rating}>Rating: {rating} / 5</p>
         <p className={s.card__article}>Article: {article}</p>
       </div>
       <div className={s.actions}>
