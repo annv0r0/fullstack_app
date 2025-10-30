@@ -1,6 +1,7 @@
 import ItemList from '@/components/Items/ItemList';
-import { getItems } from '@/lib/server/db/items';
 import s from './Dashboard.module.scss';
+// import { getItems } from '@/lib/server/db/MongoDB/items';
+import { getItems } from '@/lib/server/db/SQL/items';
 
 export default async function Dashboard() {
   const items = await getItems();

@@ -1,21 +1,22 @@
 # Full-stack Training App
 
-> Version **v0.2.0** — October 21 2025
+> Version **v0.3.0** — October 30, 2025
 
 **What’s new**
 
-- Migrated from the custom auth system to **NextAuth.js v4**
-- Added **multi-provider authentication**:
-  - **Email/password** via AWS Cognito User Pool
-  - Google, Facebook, Yandex OAuth
-- Improved protected route handling and redirect logic
-- Improved CSV parsing and normalization
+- Replaced **MongoDB** storage with a **relational** database (PostgreSQL via Supabase)
+- **Prisma ORM**: schema, migrations, typed DB access
+- Implemented initial **Prisma schema**:
+  - `Item` model for parsed CSV data. Including:
+    - Auto-generated primary key (`id` via `cuid()`)
+    - Database-managed timestamps (`DateTime @default(now())`)
+- Updated data flow:
+  - CSV → Parse → Normalize → Insert via Prisma client
 
-**Introduction**
-A compact **Next.js 15 full-stack app** for practicing real-world flows: authentication, file uploads to S3, CSV parsing, and MongoDB persistence.  
-You can sign in with **email (AWS Cognito under the hood), Google, Facebook, or Yandex** social providers, upload a CSV, parse it server-side, and explore the data in a dashboard.
+## Introduction
 
----
+A compact **Next.js 15 full-stack app** for practicing real-world flows: authentication, file uploads to S3, CSV parsing, and PostgreSQL persistence.  
+ You can sign in with **email (AWS Cognito under the hood), Google, Facebook, or Yandex** social providers, upload a CSV, parse it server-side, and explore the data in a dashboard.
 
 ## Quick start
 
@@ -23,6 +24,14 @@ You can sign in with **email (AWS Cognito under the hood), Google, Facebook, or 
 npm i
 npm run dev
 ```
+
+### Supabase (PostgreSQL) + Prisma database setup
+
+```bash
+npx prisma migrate dev --name init_postgres
+```
+
+See URL format descriptoin in Supabase project [Connection tab](https://supabase.com/dashboard/project/<PROJECT_ID>?showConnect=true)
 
 ## Features
 
@@ -34,24 +43,20 @@ npm run dev
 - Easy provider toggling via `auth.config.js`
 - Middleware-based route protection
 
-### CSV → S3 → MongoDB pipeline
+### CSV → S3 → PostgreSQL pipeline
 
 - Client uploads CSV via **presigned URL**
 - Server reads S3 stream → parses → normalizes → inserts into `Items` database
-- Header validation + type casting (number, bool, date)
+- Header validation + type casting (number, bool, string)
 
 ### UI / UX
 
 - **Next.js App Router**
 - Pages: public (`/`, `/auth`) and protected (`/dashboard`, `/upload`, `/items/[id]`)
 
----
-
 ## Tech Stack
 
-Next.js 15 • NextAuth.js v4 • Cognito OIDC • AWS S3 • MongoDB Atlas • csv-parse • SCSS Modules
-
----
+Next.js 15 • NextAuth.js v4 • Cognito OIDC • AWS S3 • Supabase (PostgreSQL) • Prisma ORM • csv-parse • SCSS Modules
 
 ## Environment (.env)
 
@@ -72,9 +77,9 @@ FACEBOOK_CLIENT_SECRET=...
 YANDEX_CLIENT_ID=...
 YANDEX_CLIENT_SECRET=...
 
-# MongoDB
-DB_URI=mongodb+srv://...
-DB_NAME=fullstack_app
+# PostgreSQL
+DATABASE_URL="postgresql://<USER>.<PROJECT_ID>:<USER_PSWRD>@<REGION>.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DIRECT_URL="postgresql://postgres.<PROJECT_ID>:<ADMIN_PSWRD>@<REGION>.pooler.supabase.com:5432/postgres"
 
 # AWS S3
 AWS_REGION=us-east-1
@@ -85,4 +90,4 @@ S3_BUCKET=your-bucket
 
 ## CSV expectations
 
-Headers like: `title,description,weight,unit,price,availible,raiting,image,date`
+Headers like: `title,description,weight,unit,price,availible,raiting,image`

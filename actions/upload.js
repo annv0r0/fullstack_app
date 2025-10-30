@@ -2,7 +2,8 @@
 
 import { getObjectStream } from '@/lib/server/aws/s3';
 import { parseCSV } from '@/lib/server/csv/parse';
-import { insertItems } from '@/lib/server/db/items.js';
+// import { insertItems } from '@/lib/server/db/MongoDB/items';
+import { insertItems } from '@/lib/server/db/SQL/items';
 
 export async function upload(key) {
   const stream = await getObjectStream(key);
