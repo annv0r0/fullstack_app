@@ -1,7 +1,22 @@
-# 🧾 Changelog — TOR (Full-stack Training App)
+# 🧾 Changelog — Full-stack Training App
 
 All notable changes to this project will be documented here.  
 This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PATCH).
+
+---
+
+## [v0.3.0] — 2025-10-30
+
+### Database Migration. Old MongoDB - New Prisma + Supabase (PostgreSQL)
+
+- Replaced **MongoDB** storage with a **relational** database (PostgreSQL via Supabase)
+- **Prisma ORM**: schema, migrations, typed DB access
+- Implemented initial **Prisma schema**:
+  - `Item` model for parsed CSV data. Including:
+    - Auto-generated primary key (`id` via `cuid()`)
+    - Database-managed timestamps (`DateTime @default(now())`)
+- Updated data flow:
+  - CSV → Parse → Normalize → Insert via Prisma client
 
 ---
 
@@ -28,15 +43,6 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
   - CSV → AWS S3 → server parsing → MongoDB insert
 - Dashboard + item list/detail views
 - Base Next.js 15 setup and environment config
-
----
-
-## [v0.3.0] — planned
-
-### Database migration
-
-- Migrate to a relational database (SQLite, PostgreSQL)
-- Normalize schema (Users, Items, Uploads, Sessions)
 
 ---
 

@@ -43,5 +43,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+#
+*.db
+*.db-journal
+/lib/generated/prisma
+
 # other
-copilot-instructions.md
+.github

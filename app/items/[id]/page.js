@@ -1,6 +1,6 @@
 import Item from '@/components/Items/Item';
-import { getItemById } from '@/lib/server/db/items';
-import { redirect } from 'next/navigation';
+// import { getItemById } from '@/lib/server/db/MongoDB/items';
+import { getItemById } from '@/lib/server/db/SQL/items';
 
 export default async function ItemPage({ params }) {
   const { id } = await params;

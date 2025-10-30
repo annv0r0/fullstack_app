@@ -37,10 +37,6 @@ const config = {
     }
     return session;
   },
-  debug: true,
-  logger: {
-    error: (code, ...rest) => console.error('[next-auth][error]', code, ...rest),
-  },
   pages: {
     signIn: '/auth',
   },

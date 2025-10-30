@@ -1,0 +1,23 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")  
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Item {
+  id        String   @id @default(cuid())
+  article   String   @unique
+  title     String
+  description String?
+  weight    Int?
+  unit      String?
+  price     Decimal? @db.Decimal(10,2)
+  available Boolean?
+  rating    Int?
+  image     String?
+  date      DateTime? @default(now())
+}
