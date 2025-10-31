@@ -5,7 +5,17 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
-## [v0.3.0] — 2025-10-30
+## [v0.4.0] — 2025-10-31
+
+### S3 storage
+
+- Added image upload UI feature
+- Images now stored in public bucket for use in UI cards
+- CSV upload now requires image field with S3 URL reference
+
+---
+
+## [v0.3.0]
 
 ### Database Migration. Old MongoDB - New Prisma + Supabase (PostgreSQL)
 
@@ -43,15 +53,6 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
   - CSV → AWS S3 → server parsing → MongoDB insert
 - Dashboard + item list/detail views
 - Base Next.js 15 setup and environment config
-
----
-
-## [v0.4.0] — planned
-
-### S3 storage and media
-
-- Image upload + metadata linking
-- CSV storage optimization and processing improvements
 
 ---
 

@@ -4,14 +4,9 @@
 
 **What’s new**
 
-- Replaced **MongoDB** storage with a **relational** database (PostgreSQL via Supabase)
-- **Prisma ORM**: schema, migrations, typed DB access
-- Implemented initial **Prisma schema**:
-  - `Item` model for parsed CSV data. Including:
-    - Auto-generated primary key (`id` via `cuid()`)
-    - Database-managed timestamps (`DateTime @default(now())`)
-- Updated data flow:
-  - CSV → Parse → Normalize → Insert via Prisma client
+- Added image upload UI feature
+- Images now stored in public bucket for use in UI cards
+- CSV upload now requires image field with S3 URL reference
 
 ## Introduction
 
@@ -86,6 +81,7 @@ AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=...
 AWS_SECRET_ACCESS_KEY=...
 S3_BUCKET=your-bucket
+NEXT_PUBLIC_S3_BUCKET="https://<YOUR_BUCKET_NAME>.s3.<REGION>.amazonaws.com/<image_name.png>"
 ```
 
 ## CSV expectations

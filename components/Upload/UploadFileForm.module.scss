@@ -1,13 +1,52 @@
 .form {
   display: flex;
   flex-direction: row;
+  align-items: end;
   gap: 1rem;
   border: 1px solid grey;
   padding: 1rem;
   margin-top: 50px;
+  width: 500px;
 }
 
-.form__fileInput {
+.form__files {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: small;
+}
+
+.form__file {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 150px;
+}
+
+.form__imageInput::-webkit-file-upload-button {
+  display: none;
+}
+
+.form__imageInput::file-selector-button {
+  display: none;
+}
+
+.form__imageLabel {
+  background-color: azure;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background: #dde;
+  }
+}
+
+.form__fileInput::-webkit-file-upload-button {
+  display: none;
+}
+
+.form__fileInput::file-selector-button {
   display: none;
 }
 
@@ -35,6 +74,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  height: 30px;
+  width: 150px;
 
   &:hover {
     background: #dde;
