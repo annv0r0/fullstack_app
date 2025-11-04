@@ -2,7 +2,6 @@ import UploadFileForm from '@/components/Upload/UploadFileForm';
 import s from './page.module.scss';
 
 export default async function UploadPage() {
-  const url_placeholder = 'https://YOUR_BUCKET_NAME.s3.REGION.amazonaws.com';
   return (
     <div className={s.container}>
       <h1 className={s.title}>UPLOAD DATA</h1>
@@ -32,7 +31,7 @@ export default async function UploadPage() {
               <td>USD</td>
               <td>TRUE</td>
               <td>5</td>
-              <td>{url_placeholder}/image_1.png</td>
+              <td>image_1.png</td>
             </tr>
             <tr>
               <td>lettuce</td>
@@ -43,7 +42,7 @@ export default async function UploadPage() {
               <td>USD</td>
               <td>FALSE</td>
               <td>4</td>
-              <td>{url_placeholder}/image_2.png</td>
+              <td>image_3.png</td>
             </tr>
             <tr>
               <td>cheese</td>
@@ -54,7 +53,7 @@ export default async function UploadPage() {
               <td>USD</td>
               <td>TRUE</td>
               <td>2</td>
-              <td>{url_placeholder}/image_3.png</td>
+              <td>image_3.png</td>
             </tr>
             <tr>
               <td>water</td>
@@ -65,7 +64,7 @@ export default async function UploadPage() {
               <td>USD</td>
               <td>FALSE</td>
               <td>3</td>
-              <td>{url_placeholder}/image_4.png</td>
+              <td>image_4.png</td>
             </tr>
           </tbody>
         </table>

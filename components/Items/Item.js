@@ -20,11 +20,13 @@ export default function Item({
   return (
     <div className={clsx(s.container, pageType === 'detail' ? s.container_detail : s.container_card)}>
       <div className={s.imageWrapper}>
-        <Image className={s.image} src={image || '/placeholder.png'} alt={title} fill={true} />
+        <Image className={s.image} src={image} alt={title} fill={true} />
       </div>
       <div className={s.card}>
         <h3 className={s.card__title}>{title}</h3>
         <p className={s.card__desc}>{description}</p>
+        <br />
+        <p className={s.card__article}>Article: {article}</p>
         <p className={s.card__price}>Price: {price ? `$${price}` : 'N/A'}</p>
         <p className={s.card__weight}>
           Weight: {weight}
@@ -32,7 +34,6 @@ export default function Item({
         </p>
         <p className={s.card__available}>Available: {available === 'TRUE' ? 'Yes' : 'No'}</p>
         <p className={s.card__rating}>Rating: {rating} / 5</p>
-        <p className={s.card__article}>Article: {article}</p>
       </div>
       <div className={s.actions}>
         <div className={s.btns}>

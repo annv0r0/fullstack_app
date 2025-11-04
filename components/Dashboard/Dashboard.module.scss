@@ -1,7 +1,16 @@
 .container {
   padding: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
   padding-bottom: 80px;
+}
+
+.loading {
+  font-size: 2rem;
+  font-style: italic;
+  margin: 0 auto;
 }
