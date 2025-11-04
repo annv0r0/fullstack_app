@@ -1,24 +1,28 @@
-// SERVER
-
 'use server';
+import { getCartId } from '@/lib/cart-cookie';
+import { addItemToCart, removeItemFromCart } from '@/lib/server/db/SQL/cart';
 
-export async function addToCart(formData) {
-  // const id = formData.get('id');
-  // 'use server';
-
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/items`);
-
-  // fetch('/api/items', { method: 'POST', body: JSON.stringify(data) });
-  return;
+export async function addToCart(product) {
+  // { cartId, setCookieIfNew }
+  const { cartId } = await getCartId();
+  await addItemToCart(cartId, product);
 }
 
-export async function removeFromCart(formData) {
-  // 'use server';
-  // const id = formData.get('id');
-
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/items`);
-  // fetch('/api/items', { method: 'POST', body: JSON.stringify(data) });
-
-  return;
+export async function removeFromCart(productId) {
+  const { cartId } = await getCartId();
+  await removeItemFromCart(cartId, productId);
 }
-// {body:})
+
+// export async function setQuantity(productId, qty) {
+//   const { cartId } = await getCartId();
+//   if (qty <= 0) return removeFromCart(productId);
+//   await prisma.cartItem.update({
+//     where: { cartId_productId: { cartId, productId } },
+//     data: { quantity: qty },
+//   });
+// }
+
+export async function getCart() {
+  const { cartId } = await getCartId();
+  return prisma.cartItem.findMany({ where: { cartId } });
+}

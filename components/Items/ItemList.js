@@ -17,7 +17,7 @@ export default async function ItemList() {
         <>
           {items.map((item) => (
             <Link href={`/items/${item.article}`} key={item.article}>
-              <Item {...item} />
+              <Item item={item} />
             </Link>
           ))}
         </>

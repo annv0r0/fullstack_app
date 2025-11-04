@@ -7,5 +7,5 @@ export default async function ItemPage({ params }) {
 
   const data = await getItemById(id);
 
-  return <Item pageType="detail" {...data} />;
+  return <Item item={data} pageType="detail" />;
 }
