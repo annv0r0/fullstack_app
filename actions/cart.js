@@ -1,6 +1,6 @@
 'use server';
 import { getCartId } from '@/lib/cart-cookie';
-import { addItemToCart, removeItemFromCart } from '@/lib/server/db/SQL/cart';
+import { addItemToCart, removeItemFromCart, setCartItemQty } from '@/lib/server/db/SQL/cart';
 
 export async function addToCart(product) {
   // { cartId, setCookieIfNew }
@@ -13,14 +13,11 @@ export async function removeFromCart(productId) {
   await removeItemFromCart(cartId, productId);
 }
 
-// export async function setQuantity(productId, qty) {
-//   const { cartId } = await getCartId();
-//   if (qty <= 0) return removeFromCart(productId);
-//   await prisma.cartItem.update({
-//     where: { cartId_productId: { cartId, productId } },
-//     data: { quantity: qty },
-//   });
-// }
+export async function setQuantity(productId, qty) {
+  const { cartId } = await getCartId();
+  if (qty <= 0) return removeFromCart(productId);
+  await setCartItemQty(cartId, productId, qty);
+}
 
 export async function getCart() {
   const { cartId } = await getCartId();

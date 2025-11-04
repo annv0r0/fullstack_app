@@ -1,6 +1,7 @@
 .nav {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+
   padding: 20px;
   background-color: #f0f0f0;
   color: #333;
@@ -11,6 +12,14 @@
   z-index: 1;
 }
 
-.auth {
-  margin-left: auto;
+.left {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.right {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }

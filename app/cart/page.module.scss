@@ -1,0 +1,25 @@
+.cart {
+  padding: 120px;
+}
+
+.header {
+  padding-bottom: 20px;
+  border-bottom: solid 2px gray;
+}
+
+.list {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #232122;
+  border: solid 1px #232122;
+  border-radius: 16px;
+  padding: 16px 8px;
+}
