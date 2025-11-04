@@ -1,22 +1,21 @@
 import Image from 'next/image';
-import { addToCart } from '@/actions/cart';
+// import { addToCart } from '@/actions/cart';
 import { removeFromCart } from '@/actions/cart';
 import clsx from 'clsx';
 import s from './Item.module.scss';
+import AddToCartButton from '../Cart/AddToCartButton';
+import RemoveFromCartButton from '../Cart/RemoveFromCartButton';
 
-export default function Item({
-  pageType: pageType = 'card',
-  article,
-  title,
-  description,
-  weight,
-  unit,
-  price,
-  available,
-  rating,
-  image,
-  date,
-}) {
+export default function Item({ item, pageType: pageType = 'card' }) {
+  const { id, article, title, description, weight, unit, price, available, rating, image, date } = item;
+
+  const productForCart = {
+    id: String(id),
+    title,
+    price: item.price ? Number(item.price) : null,
+    image: item.image,
+  };
+
   return (
     <div className={clsx(s.container, pageType === 'detail' ? s.container_detail : s.container_card)}>
       <div className={s.imageWrapper}>
@@ -37,19 +36,9 @@ export default function Item({
       </div>
       <div className={s.actions}>
         <div className={s.btns}>
-          <form className={s.add} action={addToCart}>
-            <input className={s.add__article} type="hidden" name="article" value={article} />
-            <button className={s.add__btn} type="submit">
-              Add
-            </button>
-          </form>
+          <AddToCartButton product={productForCart} />
 
-          <form className={s.romove} action={removeFromCart}>
-            <input className={s.remove__article} type="hidden" name="article" value={article} />
-            <button className={s.remove__btn} type="submit">
-              Remove
-            </button>
-          </form>
+          <RemoveFromCartButton product={productForCart.id} />
         </div>
       </div>
     </div>
