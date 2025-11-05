@@ -10,7 +10,7 @@ export default function RemoveFromCartButton({ product, cart }) {
   function handleClick(e) {
     e.stopPropagation();
     e.preventDefault();
-    start(() => removeFromCart(product));
+    // start(() => removeFromCart(product));
   }
 
   return (
