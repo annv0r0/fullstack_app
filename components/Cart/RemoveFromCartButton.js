@@ -4,13 +4,13 @@ import { removeFromCart } from '@/actions/cart';
 import clsx from 'clsx';
 import s from './Cart.module.scss';
 
-export default function RemoveFromCartButton({ product, cart }) {
+export default function RemoveFromCartButton({ productId, cart }) {
   const [pending, start] = useTransition();
 
   function handleClick(e) {
     e.stopPropagation();
     e.preventDefault();
-    // start(() => removeFromCart(product));
+    start(() => removeFromCart(productId));
   }
 
   return (

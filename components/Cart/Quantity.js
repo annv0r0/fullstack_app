@@ -14,7 +14,7 @@ export default function Quantity({ productId, quantity, price }) {
     e.preventDefault();
     const next = Math.max(0, qwt - 1);
     setQwt(next);
-    // start(() => setQuantity(productId, next));
+    start(() => setQuantity(productId, next));
   }
 
   function add(e) {
@@ -22,7 +22,7 @@ export default function Quantity({ productId, quantity, price }) {
     e.preventDefault();
     const next = qwt + 1;
     setQwt(next);
-    // start(() => setQuantity(productId, next));
+    start(() => setQuantity(productId, next));
   }
 
   return (
