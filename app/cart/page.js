@@ -10,17 +10,24 @@ export default async function CartPage() {
   const { cartId } = await getCartId();
   const items = await getCartItems(cartId);
 
-  if (!items.length) return <p>Cart is empty</p>;
+  if (!items.length)
+    return (
+      <div className={s.cart}>
+        <h1 className={s.header}>Cart</h1>
+        <p className={s.cart__empty}>Cart is empty</p>
+      </div>
+    );
 
   return (
     <div className={s.cart}>
       <h1 className={s.header}>Cart</h1>
+
       <div className={s.list}>
         {items.map((i) => (
           <form className={s.form} key={i.productId}>
             <CartItem i={i} />
             <Quantity productId={i.productId} quantity={i.quantity} price={Number(i.price)} />
-            <RemoveFromCartButton product={i.productId} cart={true} />
+            <RemoveFromCartButton productId={i.productId} cart={true} />
           </form>
         ))}
       </div>

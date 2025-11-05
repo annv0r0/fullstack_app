@@ -1,6 +1,4 @@
 import Image from 'next/image';
-// import { addToCart } from '@/actions/cart';
-import { removeFromCart } from '@/actions/cart';
 import clsx from 'clsx';
 import s from './Item.module.scss';
 import AddToCartButton from '../Cart/AddToCartButton';
@@ -19,7 +17,7 @@ export default function Item({ item, pageType: pageType = 'card' }) {
   return (
     <div className={clsx(s.container, pageType === 'detail' ? s.container_detail : s.container_card)}>
       <div className={s.imageWrapper}>
-        <Image className={s.image} src={image} alt={title} fill={true} />
+        <Image className={s.image} src={image} alt={title} fill sizes={100} />
       </div>
       <div className={s.card}>
         <h3 className={s.card__title}>{title}</h3>
@@ -37,8 +35,7 @@ export default function Item({ item, pageType: pageType = 'card' }) {
       <div className={s.actions}>
         <div className={s.btns}>
           <AddToCartButton product={productForCart} />
-
-          <RemoveFromCartButton product={productForCart.id} />
+          <RemoveFromCartButton productId={productForCart.id} />
         </div>
       </div>
     </div>
