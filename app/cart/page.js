@@ -33,7 +33,7 @@ export default async function CartPage() {
       </div>
 
       <div className={s.details}>
-        <OrderDetails items={items}></OrderDetails>
+        <OrderDetails />
       </div>
     </div>
   );

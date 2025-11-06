@@ -20,12 +20,9 @@ export async function setQuantity(productId, qty) {
   const { cartId } = await getCartId();
   try {
     if (qty <= 0) return removeFromCart(productId);
-    else {
-      const r = await setCartItemQty(cartId, productId, qty);
-      if (r?.ok) return r;
-    }
+    const r = await setCartItemQty(cartId, productId, qty);
+    if (r?.ok) return r;
     revalidatePath('/cart');
-    console.log('setQuantity');
 
     return { ok: true };
   } catch (e) {
