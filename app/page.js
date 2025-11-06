@@ -10,9 +10,14 @@ export default async function Home() {
         <Image className={s.hero} src={S3_IMG_URL} alt="hero" fill></Image>
       </div>
       <p className={s.blurb}>
-        Track meals and spending in seconds. Upload receipts or CSVs, we parse them into items and expenses, store
-        everything securely, and surface a clean dashboard with recent purchases, monthly budget, and a ready-to-use
-        shopping list. Sign in with email or socials and start planning smarter.
+        Do you want to save all the information about your favorite items? Upload a CSV file and add images — the app
+        will parse your dataset and show you a beautiful gallery.
+        <br></br>
+        Add items to your shopping cart.
+        <br></br>
+        Store everything securely. Sign in with email or social accounts and never forget your items.
+        <br></br>
+        Updates are comming.
       </p>
     </main>
   );
