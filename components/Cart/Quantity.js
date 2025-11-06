@@ -1,6 +1,7 @@
 'use client';
 import { useTransition } from 'react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { setQuantity } from '@/actions/cart';
 import s from './Cart.module.scss';
 import clsx from 'clsx';
@@ -8,13 +9,17 @@ import clsx from 'clsx';
 export default function Quantity({ productId, quantity, price }) {
   const [qwt, setQwt] = useState(quantity);
   const [pending, start] = useTransition();
+  const router = useRouter();
 
   function rmv(e) {
     e.stopPropagation();
     e.preventDefault();
     const next = Math.max(0, qwt - 1);
     setQwt(next);
-    start(() => setQuantity(productId, next));
+    start(() => {
+      setQuantity(productId, next);
+      router.refresh();
+    });
   }
 
   function add(e) {
@@ -22,7 +27,10 @@ export default function Quantity({ productId, quantity, price }) {
     e.preventDefault();
     const next = qwt + 1;
     setQwt(next);
-    start(() => setQuantity(productId, next));
+    start(() => {
+      setQuantity(productId, next);
+      router.refresh();
+    });
   }
 
   return (

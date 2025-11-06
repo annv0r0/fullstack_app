@@ -1,6 +1,11 @@
 import s from './Cart.module.scss';
+import { getCartId } from '@/lib/cart-cookie';
+import { getCartItems } from '@/lib/server/db/SQL/cart';
 
-export default function OrderDetails({ items }) {
+export default async function OrderDetails() {
+  const { cartId } = await getCartId();
+  const items = await getCartItems(cartId);
+
   const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
   const discount = 0;
   const promo = 0;
