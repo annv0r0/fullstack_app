@@ -5,6 +5,15 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
+## [v0.5.0] — 2025-11-07
+
+### Shopping cart page
+
+- add `/cart` private route
+- deployment bugs fixes
+
+---
+
 ## [v0.4.0] — 2025-10-31
 
 ### S3 storage
@@ -56,12 +65,21 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
-## [v0.5.0] — planned
+## [v0.6.0] — planned
 
-### Parsing and data pipelines
+### Billing support
 
-- Stream large CSVs directly to parser
-- Retry/error tracking for file ingestion
+- add billing feature
+- security improvements
+
+---
+
+## [v0.7.0] — planned
+
+### UI improvements
+
+- shopping cart enhancement
+- add functionality, data handling
 
 ---
 

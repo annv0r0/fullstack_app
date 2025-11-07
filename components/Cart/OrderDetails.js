@@ -1,6 +1,7 @@
 import s from './Cart.module.scss';
 import { getCartId } from '@/lib/cart-cookie';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
+import PayButton from './PayButton';
 
 export default async function OrderDetails() {
   const { cartId } = await getCartId();
@@ -17,19 +18,16 @@ export default async function OrderDetails() {
 
       <div className={s.details__sum}>
         <p>
-          {items.length} items — {subtotal.toLocaleString('en-US')} USD
+          {items.reduce((sum, i) => sum + i.quantity, 0)} items — {subtotal.toLocaleString('en-US')} USD
         </p>
-        <p>Discount — {discount ? `-${discount.toLocaleString('en-US')} USD` : '0 USD'}</p>
-        <p>Promo Codes — {promo ? `-${promo.toLocaleString('en-US')} USD` : '0 USD'}</p>
+        <p>Discount — {discount ? `${discount.toLocaleString('en-US')} USD` : '0 USD'}</p>
+        <p>Promo Codes — {promo ? `${promo.toLocaleString('en-US')} USD` : '0 USD'}</p>
       </div>
 
       <div className={s.details__total}>
         <strong>Total — {total.toLocaleString('en-US')} USD</strong>
       </div>
-
-      <button className={s.details__btn} type="button">
-        Pay now
-      </button>
+      <PayButton cartId={cartId} total={total} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { getCartId } from '@/lib/cart-cookie';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
-import RemoveFromCartButton from '@/components/Cart/RemoveFromCartButton';
+import ButtonRemoveFromCart from '@/components/Cart/ButtonRemoveFromCart';
 import Quantity from '@/components/Cart/Quantity';
 import s from './page.module.scss';
 import CartItem from '@/components/Cart/CartItem';
@@ -27,7 +27,7 @@ export default async function CartPage() {
           <form className={s.form} key={i.productId}>
             <CartItem i={i} />
             <Quantity productId={i.productId} quantity={i.quantity} price={Number(i.price)} />
-            <RemoveFromCartButton productId={i.productId} cart={true} />
+            <ButtonRemoveFromCart productId={i.productId} cart={true} />
           </form>
         ))}
       </div>

@@ -1,48 +1,35 @@
 'use client';
-import { useTransition } from 'react';
-import { useState } from 'react';
+import { useTransition, useOptimistic } from 'react';
 import { useRouter } from 'next/navigation';
 import { setQuantity } from '@/actions/cart';
 import s from './Cart.module.scss';
-import clsx from 'clsx';
 
 export default function Quantity({ productId, quantity, price }) {
-  const [qwt, setQwt] = useState(quantity);
+  const [optimisticQty, setOptimisticQty] = useOptimistic(quantity, (_current, next) => next);
+
   const [pending, start] = useTransition();
   const router = useRouter();
 
-  function rmv(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    const next = Math.max(0, qwt - 1);
-    setQwt(next);
-    start(() => {
-      setQuantity(productId, next);
-      router.refresh();
-    });
-  }
+  function update(newQty) {
+    if (newQty < 0) return;
 
-  function add(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    const next = qwt + 1;
-    setQwt(next);
-    start(() => {
-      setQuantity(productId, next);
-      router.refresh();
+    start(async () => {
+      setOptimisticQty(newQty);
+      await setQuantity(productId, newQty);
     });
+    router.refresh();
   }
 
   return (
     <div className={s.quantity}>
       <p className={s.quantity__price}>
-        {price} X {qwt}
+        {price} X {optimisticQty}
       </p>
       <div className={s.quantity__btns}>
-        <button className={clsx([s.quantity__btn, s.quantity__btn_rmv])} disabled={pending} onClick={rmv}>
+        <button className={s.quantity__btn} onClick={() => update(optimisticQty - 1)} disabled={pending}>
           -
         </button>
-        <button className={clsx([s.quantity__btn, s.quantity__btn_add])} disabled={pending} onClick={add}>
+        <button className={s.quantity__btn} onClick={() => update(optimisticQty + 1)} disabled={pending}>
           +
         </button>
       </div>

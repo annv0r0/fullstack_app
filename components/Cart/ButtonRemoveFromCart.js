@@ -1,16 +1,20 @@
 'use client';
 import { useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+
 import { removeFromCart } from '@/actions/cart';
 import clsx from 'clsx';
 import s from './Cart.module.scss';
 
-export default function RemoveFromCartButton({ productId, cart }) {
+export default function ButtonRemoveFromCart({ productId, cart }) {
   const [pending, start] = useTransition();
+  const router = useRouter();
 
   function handleClick(e) {
     e.stopPropagation();
     e.preventDefault();
     start(() => removeFromCart(productId));
+    router.refresh();
   }
 
   return (
