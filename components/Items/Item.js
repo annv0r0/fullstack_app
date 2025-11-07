@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import clsx from 'clsx';
 import s from './Item.module.scss';
-import AddToCartButton from '../Cart/AddToCartButton';
-import RemoveFromCartButton from '../Cart/RemoveFromCartButton';
+import ButtonAddToCart from '../Cart/ButtonAddToCart';
+import ButtonRemoveFromCart from '../Cart/ButtonRemoveFromCart';
 
 export default function Item({ item, pageType: pageType = 'card' }) {
   const { id, article, title, description, weight, unit, price, available, rating, image, date } = item;
@@ -34,8 +34,8 @@ export default function Item({ item, pageType: pageType = 'card' }) {
       </div>
       <div className={s.actions}>
         <div className={s.btns}>
-          <AddToCartButton product={productForCart} />
-          <RemoveFromCartButton productId={productForCart.id} />
+          <ButtonAddToCart product={productForCart} />
+          <ButtonRemoveFromCart productId={productForCart.id} />
         </div>
       </div>
     </div>

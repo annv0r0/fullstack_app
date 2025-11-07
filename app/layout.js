@@ -5,6 +5,7 @@ import './globals.scss';
 import s from './layout.module.scss';
 import AuthButtons from '@/components/Auth/AuthButtons';
 import Providers from './providers';
+import CartIcon from '@/components/Cart/CartIcon';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -22,7 +23,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const ICON_URL = `${process.env.NEXT_PUBLIC_S3_BUCKET}/images/cart.png`;
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
@@ -34,9 +34,7 @@ export default async function RootLayout({ children }) {
               <Link href="/upload">Upload file</Link>
             </div>
             <div className={s.right}>
-              <Link className={s.cart} href="/cart">
-                <Image src={ICON_URL} width={30} height={30} alt="icon" />
-              </Link>
+              <CartIcon className={s.cart} />
               <div className={s.auth}>
                 <AuthButtons />
               </div>

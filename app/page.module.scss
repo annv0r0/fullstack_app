@@ -41,3 +41,22 @@ $button-secondary-hover: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
 }
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  height: 80vw;
+}
+
+.notfound__img {
+  height: 60vw;
+  width: auto;
+}
+
+.notfound__link:hover {
+  cursor: pointer;
+  color: darkslategrey;
+}

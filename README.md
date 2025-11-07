@@ -1,17 +1,16 @@
 # Full-stack Training App
 
-> Version **v0.3.0** — October 30, 2025
+> Version **v0.5.0** — November 07, 2025
 
 **What’s new**
 
-- Added image upload UI feature
-- Images now stored in public bucket for use in UI cards
-- CSV upload now requires image field with S3 URL reference
+- add `/cart` private route
+- deployment bugs fixes
 
 ## Introduction
 
 A compact **Next.js 15 full-stack app** for practicing real-world flows: authentication, file uploads to S3, CSV parsing, and PostgreSQL persistence.  
- You can sign in with **email (AWS Cognito under the hood), Google, Facebook, or Yandex** social providers, upload a CSV, parse it server-side, and explore the data in a dashboard.
+ You can sign in with **email (AWS Cognito under the hood), Google, Facebook, or Yandex** social providers, upload a CSV, parse it server-side, explore the data in a dashboard and add items in the shopping cart.
 
 ## Quick start
 
@@ -47,7 +46,7 @@ See URL format descriptoin in Supabase project [Connection tab](https://supabase
 ### UI / UX
 
 - **Next.js App Router**
-- Pages: public (`/`, `/auth`) and protected (`/dashboard`, `/upload`, `/items/[id]`)
+- Pages: public (`/`, `/auth`) and protected (`/dashboard`, `/upload`, `/items/[id]`, `/cart`)
 
 ## Tech Stack
 
