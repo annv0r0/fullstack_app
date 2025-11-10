@@ -7,7 +7,7 @@ import s from './Cart.module.scss';
 export default async function CartIcon() {
   const { cartId } = await getCartId();
   const items = await getCartItems(cartId);
-  const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
+  const totalCount = Array.isArray(items) ? items.reduce((sum, i) => sum + i.quantity, 0) : 0;
 
   return (
     <Link href="/cart">
