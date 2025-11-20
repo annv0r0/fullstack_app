@@ -21,9 +21,9 @@ export default withAuth(
   },
   {
     pages: { signIn: '/auth' },
-  }
+  },
 );
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/upload/:path*', '/items/:path*', '/cart'],
+  matcher: ['/dashboard/:path*', '/upload/:path*', '/items/:path*', '/cart', '/history'],
 };

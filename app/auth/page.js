@@ -1,12 +1,11 @@
 import s from './page.module.scss';
 import ProvidersClient from '@/components/Auth/ProvidersClient';
-import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
-import authConfig from '@/auth.config';
+import authOptions from '@/auth.config';
 import { redirect } from 'next/navigation';
-
+import { auth } from '@/auth';
 export default async function AuthPage({ searchParams }) {
-  const session = await getServerSession(authConfig);
+  const session = await auth();
   const sp = await searchParams;
   const callbackUrl = sp?.callbackUrl;
 

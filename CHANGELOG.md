@@ -5,6 +5,17 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
+## [v0.6.0] — 2025-11-20
+
+### Order history feature
+
+- userId is now required for getting items and orders lists
+- add `/history` private route
+- changed database schema
+- csv parsing improvements: added error handling for required fields
+
+---
+
 ## [v0.5.0] — 2025-11-07
 
 ### Shopping cart page
@@ -65,7 +76,7 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
-## [v0.6.0] — planned
+## [v0.7.0] — planned
 
 ### Billing support
 
@@ -74,7 +85,7 @@ This project follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PAT
 
 ---
 
-## [v0.7.0] — planned
+## [v0.8.0] — planned
 
 ### UI improvements
 

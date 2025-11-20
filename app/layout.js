@@ -32,6 +32,7 @@ export default async function RootLayout({ children }) {
               <Link href="/">Main</Link>
               <Link href="/dashboard">Dashboard</Link>
               <Link href="/upload">Upload file</Link>
+              <Link href="/history">History</Link>
             </div>
             <div className={s.right}>
               <CartIcon className={s.cart} />

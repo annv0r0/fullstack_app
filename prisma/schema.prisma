@@ -10,6 +10,7 @@ generator client {
 
 model Item {
   id          String    @id @default(cuid())
+  userId      String    
   article     String    @unique
   title       String
   description String?
@@ -22,6 +23,9 @@ model Item {
   date        DateTime? @default(now())
 
   cartItems CartItem[]
+  orderItems OrderItem[]
+
+  @@index([userId])
 }
 
 model Cart {
@@ -45,4 +49,37 @@ model CartItem {
   product Item? @relation(fields: [productId], references: [id], onDelete: SetNull)
 
   @@unique([cartId, productId])
+}
+
+model Order {
+  id        String       @id @default(cuid())
+  userId    String?
+  subtotal  Decimal      @db.Decimal(10, 2)
+  discount  Decimal      @db.Decimal(10, 2) @default(0)
+  total     Decimal      @db.Decimal(10, 2)
+  status    OrderStatus  @default(PAID)
+  items     OrderItem[]
+  createdAt DateTime     @default(now())
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String?
+  title     String
+  price     Decimal  @db.Decimal(10, 2)
+  quantity  Int
+  currency  String       @default("USD")
+  image     String?
+
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Item? @relation(fields: [productId], references: [id], onDelete: SetNull)
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELLED
+  REFUNDED
 }

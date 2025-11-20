@@ -8,6 +8,7 @@ export default async function OrderDetails() {
   const items = await getCartItems(cartId);
 
   const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  // TODO: implement discount and promo codes in DB
   const discount = 0;
   const promo = 0;
   const total = subtotal - discount - promo;

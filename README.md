@@ -1,11 +1,12 @@
 # Full-stack Training App
 
-> Version **v0.5.0** — November 07, 2025
+> Version **v0.6.0** — November 20, 2025
 
 **What’s new**
 
-- add `/cart` private route
-- deployment bugs fixes
+- add `/history` private route
+- changed database schema
+- csv parsing improvements: added error handling for required fields
 
 ## Introduction
 
@@ -46,7 +47,7 @@ See URL format descriptoin in Supabase project [Connection tab](https://supabase
 ### UI / UX
 
 - **Next.js App Router**
-- Pages: public (`/`, `/auth`) and protected (`/dashboard`, `/upload`, `/items/[id]`, `/cart`)
+- Pages: public (`/`, `/auth`) and protected (`/dashboard`, `/upload`, `/items/[id]`, `/cart`, `/history`)
 
 ## Tech Stack
 

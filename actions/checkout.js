@@ -1,17 +1,26 @@
 'use server';
 
+import { cookies } from 'next/headers';
+import { notFound } from 'next/navigation';
+
 // import Stripe from 'stripe';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
 import { getCartId } from '@/lib/cart-cookie';
 import { redirect } from 'next/navigation';
-
+import { addOrder } from '@/lib/server/db/SQL/orders';
+import getUserId from '@/lib/userId';
 // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function startCheckout(cartId) {
   const items = await getCartItems(cartId);
+  const userId = await getUserId();
 
-  // temporary
-  redirect('/placeholder');
+  const order = await addOrder(cartId, userId);
+  if (order?.id) {
+    const cookieJar = await cookies();
+    cookieJar.set('cartId', '', { expires: new Date(0) });
+  }
+  // notFound();
 
   // const session = await stripe.checkout.sessions.create({
   //   payment_method_types: ['card'],
