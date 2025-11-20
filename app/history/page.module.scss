@@ -1,0 +1,15 @@
+.history {
+  padding: 120px;
+}
+
+.history__header {
+  padding-bottom: 20px;
+  border-bottom: solid 2px gray;
+}
+
+.history__list {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

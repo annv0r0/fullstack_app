@@ -22,7 +22,7 @@ export default function ProvidersClient({ providers, callbackUrl }) {
             <button className={s.providers__btn} key={p.id} onClick={() => signIn(p.id, { callbackUrl })}>
               Sign in with {p.name}
             </button>
-          )
+          ),
       )}
     </>
   );

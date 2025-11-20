@@ -3,7 +3,7 @@ import CognitoProvider from 'next-auth/providers/cognito';
 import YandexProvider from 'next-auth/providers/yandex';
 import FacebookProvider from 'next-auth/providers/facebook';
 
-const config = {
+const authOptions = {
   providers: [
     CognitoProvider({
       clientId: process.env.COGNITO_CLIENT_ID,
@@ -15,6 +15,11 @@ const config = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          scope: 'openid email profile',
+        },
+      },
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID,
@@ -25,17 +30,22 @@ const config = {
       clientSecret: process.env.YANDEX_CLIENT_SECRET,
     }),
   ],
-  async jwt({ token, account, profile }) {
-    if (profile?.email) {
-      token.email = profile.email;
-    }
-    return token;
-  },
-  async session({ session, token }) {
-    if (token.email) {
-      session.user.email = token.email;
-    }
-    return session;
+  callbacks: {
+    async jwt({ token, account, profile }) {
+      if (profile?.email) token.email = profile.email;
+
+      return token;
+    },
+    async session({ session, token }) {
+      if (token.email) {
+        session.user.email = token.email;
+      }
+      if (token.sub) {
+        session.user.id = token.sub;
+      }
+
+      return session;
+    },
   },
   pages: {
     signIn: '/auth',
@@ -43,4 +53,4 @@ const config = {
   session: { strategy: 'jwt' },
 };
 
-export default config;
+export default authOptions;

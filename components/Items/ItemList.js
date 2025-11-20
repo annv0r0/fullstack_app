@@ -2,9 +2,11 @@ import Item from './Item';
 import s from './ItemList.module.scss';
 import Link from 'next/link';
 import { getItems } from '@/lib/server/db/SQL/items';
+import getUserId from '@/lib/userId';
 
 export default async function ItemList() {
-  const items = await getItems();
+  const userId = await getUserId();
+  const items = await getItems(userId);
   const noItemList = !items || items.length === 0;
 
   return (
