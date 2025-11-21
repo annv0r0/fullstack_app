@@ -1,0 +1,38 @@
+.menuButton {
+  display: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.left__items {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.nav__items {
+  display: flex;
+  padding: 10px 20px;
+  gap: 10px;
+  z-index: 10;
+}
+
+@media screen and (max-width: 768px) {
+  .menuButton {
+    display: block;
+  }
+
+  .nav__items {
+    background-color: #f0f0f0;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+  }
+
+  .left__items_closed {
+    display: none;
+  }
+}
