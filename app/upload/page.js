@@ -1,12 +1,30 @@
 import UploadFileForm from '@/components/Upload/UploadFileForm';
 import s from './page.module.scss';
+import Link from 'next/link';
 
 export default async function UploadPage() {
+  const EXAMPLE_FILE_URL =
+    'https://docs.google.com/spreadsheets/d/15dJND_x1RP84a92pRmJfe48CEqQ4dQzXG-3tDANIVH4/edit?usp=sharing';
+  const EXAMPLE_IMAGES_URL = 'https://drive.google.com/drive/folders/1yL3_1x_kGDopO8EtipMvefhLHW_P4Q0b?usp=drive_link';
+
   return (
     <div className={s.container}>
       <h1 className={s.title}>UPLOAD DATA</h1>
       <div className={s.infoBox}>
-        <p>Upload a CSV file to add new items to your database. The file must include the following columns:</p>
+        <p>
+          Upload a CSV file to add new items to your database. Use examples [
+          <Link className={s.example} href={EXAMPLE_FILE_URL} target="_blank">
+            file
+          </Link>
+          ], [
+          <Link className={s.example} href={EXAMPLE_IMAGES_URL} target="_blank">
+            images
+          </Link>
+          ] or create your own file.
+          <br />
+          <br />
+        </p>
+        <p>The file must include the following columns:</p>
         <table className={s.table}>
           <thead>
             <tr>
@@ -69,6 +87,7 @@ export default async function UploadPage() {
           </tbody>
         </table>
       </div>
+
       <UploadFileForm />
     </div>
   );

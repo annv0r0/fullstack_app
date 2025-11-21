@@ -11,12 +11,14 @@
 }
 
 .infoBox {
+  overflow-x: auto;
   background: #111;
   border: 1px solid #333;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 2rem;
   line-height: 1.6;
+  max-width: 100%;
 }
 
 .table {
@@ -26,11 +28,37 @@
 
   th,
   td {
-    border: 1px solid #333;
+    border: 1px solid hsl(0, 0%, 20%);
     padding: 0.5rem;
     text-align: left;
   }
+}
 
-  th {
+.example {
+  font-size: 0.9rem;
+  color: darkkhaki;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: gray;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .infoBox {
+    padding: 1rem;
+  }
+
+  .table {
+    min-width: 600px;
+    th,
+    td {
+      padding: 0.2rem;
+    }
   }
 }

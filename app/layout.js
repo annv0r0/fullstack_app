@@ -1,11 +1,10 @@
 import { Geist, Geist_Mono } from 'next/font/google';
-import Link from 'next/link';
-import Image from 'next/image';
 import './globals.scss';
-import s from './layout.module.scss';
-import AuthButtons from '@/components/Auth/AuthButtons';
 import Providers from './providers';
+import Navigation from '@/components/Navigation/Navigation';
 import CartIcon from '@/components/Cart/CartIcon';
+import Login from '@/components/Auth/Login';
+import s from './layout.module.scss';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,21 +22,20 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const S3_IMG_URL = `${process.env.NEXT_PUBLIC_S3_BUCKET}/images/menu.png`;
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
           <nav className={s.nav}>
             <div className={s.left}>
-              <Link href="/">Main</Link>
-              <Link href="/dashboard">Dashboard</Link>
-              <Link href="/upload">Upload file</Link>
-              <Link href="/history">History</Link>
+              <Navigation />
             </div>
             <div className={s.right}>
-              <CartIcon className={s.cart} />
+              <CartIcon />
               <div className={s.auth}>
-                <AuthButtons />
+                <Login />
               </div>
             </div>
           </nav>

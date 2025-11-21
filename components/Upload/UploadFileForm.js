@@ -31,16 +31,15 @@ export default function UploadFileForm() {
       <form className={s.form} onSubmit={onSubmit}>
         <div className={s.form__files}>
           <div className={s.form__file}>
+            <input className={s.form__fileInput} type="file" name="file" id="file" accept="text/csv"></input>
+            <label className={s.form__fileLabel} htmlFor="file">
+              Choose csv file
+            </label>
+          </div>
+          <div className={s.form__file}>
             <input className={s.form__imageInput} type="file" name="image" id="image" accept="image/*" multiple></input>
             <label className={s.form__imageLabel} htmlFor="image">
               Choose image
-            </label>
-          </div>
-
-          <div className={s.form__file}>
-            <input className={s.form__fileInput} type="file" name="file" id="file"></input>
-            <label className={s.form__fileLabel} htmlFor="file">
-              Choose csv file
             </label>
           </div>
         </div>
