@@ -1,0 +1,38 @@
+@import 'variables';
+
+@mixin textLink {
+  font-size: 0.9rem;
+  color: darkkhaki;
+  text-decoration: none;
+
+  &::before {
+    content: '[>>';
+    margin-right: 2px;
+  }
+
+  &::after {
+    content: ']';
+    margin-left: 2px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: gray;
+  }
+}
+
+@mixin button__send {
+  background: $brown;
+  color: $white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  height: 30px;
+  width: 150px;
+}
+
+@mixin hover {
+  color: $white-hover;
+  opacity: 0.6;
+}

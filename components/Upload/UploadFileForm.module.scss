@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'mixins';
+
 .form {
   display: flex;
   flex-direction: row;
@@ -38,7 +41,7 @@
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background: #dde;
+    background: $white-hover;
   }
 }
 
@@ -57,7 +60,7 @@
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background: #dde;
+    background: $white-hover;
   }
 }
 
@@ -68,28 +71,22 @@
 }
 
 .form__btn {
-  background-color: brown;
-  color: azure;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  height: 30px;
-  width: 150px;
+  @include button__send;
 
   &:hover {
-    background: #dde;
+    @include hover;
   }
 }
+
 .success {
-  color: green;
+  color: $green;
   font-size: large;
   margin: 20px auto;
   font-style: italic;
 }
 
 .error {
-  color: red;
+  color: $brown;
   font-size: large;
   margin: 20px auto;
   font-style: italic;

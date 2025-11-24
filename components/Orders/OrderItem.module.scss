@@ -1,3 +1,5 @@
+@import 'variables';
+
 .order {
   background-color: #232122;
   border: 1px solid #3a3a3a;
@@ -52,7 +54,7 @@
 }
 
 .order__statusPAID {
-  background-color: #4caf50;
+  background-color: $green;
 }
 
 .order__statusPENDING {
@@ -173,5 +175,5 @@
 }
 
 .order__discount {
-  color: #4caf50 !important;
+  color: $green !important;
 }

@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -34,15 +36,8 @@
   }
 }
 
-.example {
-  font-size: 0.9rem;
-  color: darkkhaki;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-    color: gray;
-  }
+.exampleLink {
+  @include textLink;
 }
 
 @media (max-width: 768px) {

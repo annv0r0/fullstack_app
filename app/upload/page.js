@@ -12,15 +12,15 @@ export default async function UploadPage() {
       <h1 className={s.title}>UPLOAD DATA</h1>
       <div className={s.infoBox}>
         <p>
-          Upload a CSV file to add new items to your database. Use examples [
-          <Link className={s.example} href={EXAMPLE_FILE_URL} target="_blank">
+          Upload a CSV file to add new items to your database. Use examples&nbsp;
+          <Link className={s.exampleLink} href={EXAMPLE_FILE_URL} target="_blank">
             file
           </Link>
-          ], [
-          <Link className={s.example} href={EXAMPLE_IMAGES_URL} target="_blank">
+          ,&nbsp;
+          <Link className={s.exampleLink} href={EXAMPLE_IMAGES_URL} target="_blank">
             images
           </Link>
-          ] or create your own file.
+          &nbsp; or create your own file.
           <br />
           <br />
         </p>
