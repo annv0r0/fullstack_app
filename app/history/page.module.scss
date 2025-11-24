@@ -9,7 +9,13 @@
 
 .history__list {
   margin: 40px 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
   gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .history {
+    padding: 80px 20px;
+  }
 }

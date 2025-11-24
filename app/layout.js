@@ -7,12 +7,10 @@ import Login from '@/components/Auth/Login';
 import s from './layout.module.scss';
 
 const geistSans = Geist({
-  variable: '--font-geist-sans',
   subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
   subsets: ['latin'],
 });
 
@@ -26,7 +24,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.className} ${geistMono.className}`}>
         <Providers>
           <nav className={s.nav}>
             <div className={s.left}>

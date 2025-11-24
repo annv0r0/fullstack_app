@@ -1,47 +1,72 @@
-$background: #0a0a0a;
-$foreground: #ededed;
-$gray-rgb: rgb(255, 255, 255);
-$gray-alpha-200: rgba($gray-rgb, 0.145);
-$gray-alpha-100: rgba($gray-rgb, 0.06);
+@import 'mixins';
+@import 'variables';
 
-$button-primary-hover: #ccc;
-$button-secondary-hover: #1a1a1a;
+.hero__title {
+  font-size: 3.2rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
 
-.main {
+.hero__subtitle {
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+}
+
+.hero__wrapper {
+  margin-top: 80px;
+  position: relative;
+  height: calc(100vh - 80px);
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 120px;
-  gap: 32px;
-}
-
-.imageWrapper {
-  position: relative;
-  width: 600px;
-  height: 400px;
-}
-
-.title {
-  font-size: 4rem;
-  margin-bottom: 50px;
-}
-.blurb {
-  width: min(820px, 92vw);
-  margin: 14px auto 56px;
   text-align: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.35));
+}
 
+.content {
+  padding: 40px;
+  margin: 40px;
   color: #b9bbc6;
-  font-size: clamp(0.98rem, 1.2vw + 0.6rem, 1.15rem);
-  line-height: 1.7;
+  font-size: 1.15rem;
+  line-height: 25px;
   letter-spacing: 0.15px;
-  text-wrap: pretty;
-
-  padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: $gray-alpha-100;
+  border: 1px solid $gray-alpha-200;
   border-radius: 12px;
 }
 
+.content__list {
+  list-style-position: inside;
+  padding-left: 20px;
+  border-left: 2px solid $gray-alpha-200;
+  margin-left: 20px;
+
+  li {
+    margin-bottom: 15px;
+
+    &::marker {
+      color: $green;
+    }
+  }
+}
+
+.content__textLink {
+  @include textLink;
+}
 .notfound {
   display: flex;
   flex-direction: column;
@@ -59,4 +84,27 @@ $button-secondary-hover: #1a1a1a;
 .notfound__link:hover {
   cursor: pointer;
   color: darkslategrey;
+}
+
+@media (max-width: 768px) {
+  .hero__wrapper {
+    margin-top: 0;
+    height: 100vh;
+  }
+  .hero__overlay {
+    text-align: center;
+    padding: 60px;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+  .content {
+    font-size: 0.8rem;
+    margin: 20px;
+    padding: 20px;
+  }
+  .content__list {
+    padding-left: 20px;
+    margin-left: 20px;
+  }
 }
