@@ -14,12 +14,15 @@ export default function Navigation() {
   };
 
   return (
-    <div className={s.left__items} onClick={() => toggleMenu()}>
-      <Image className={s.menuButton} src={S3_IMG_URL} alt="menu" width={30} height={30} />
-      <div className={`${s.nav__items} ${isOpen ? '' : s.left__items_closed}`}>
+    <div className={s.left__items} onClick={toggleMenu}>
+      <button className={s.menuButton}>
+        <Image src={S3_IMG_URL} alt="menu" width={30} height={30} />
+      </button>
+      <div className={`${s.nav__items} ${isOpen ? '' : s.closed}`}>
         <Link href="/">Main</Link>
         <Link href="/dashboard">Dashboard</Link>
         <Link href="/upload">Upload file</Link>
+        <Link href="/cart">Cart</Link>
         <Link href="/history">History</Link>
       </div>
     </div>

@@ -1,50 +1,58 @@
 'use server';
-import { cookies } from 'next/headers';
-import { randomUUID } from 'crypto';
 import { revalidatePath } from 'next/cache';
 
-import { CART_COOKIE } from '@/lib/cart-cookie';
-import { getCartId } from '@/lib/cart-cookie';
 import { addItemToCart, removeItemFromCart, setCartItemQty } from '@/lib/server/db/SQL/cart';
-import getUserId from '@/lib/userId';
-
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
-
-export async function ensureCartId() {
-  const store = cookies();
-  let cartId = store.get(CART_COOKIE)?.value;
-
-  if (!cartId) {
-    cartId = randomUUID();
-    store.set(CART_COOKIE, cartId);
-  }
-
-  return { cartId };
-}
+import getUserId from '@/lib/utils/userId';
 
 export async function addToCart(product) {
-  const { cartId } = await getCartId();
-  const userId = await getUserId();
-  await addItemToCart(userId, cartId, product);
+  try {
+    const userId = await getUserId();
+    if (!userId) {
+      return { ok: false, code: 'UNAUTHENTICATED' };
+    }
+    await addItemToCart(userId, product);
+    return { ok: true };
+  } catch (e) {
+    console.error('addToCart error', e);
+    return { ok: false, code: 'SERVER_ACTION_ERROR' };
+  }
 }
 
 export async function removeFromCart(productId) {
-  const { cartId } = await getCartId();
-  await removeItemFromCart(cartId, productId);
-  revalidatePath('/cart');
+  try {
+    const userId = await getUserId();
+    if (!userId) {
+      return { ok: false, code: 'UNAUTHENTICATED' };
+    }
+    const res = await removeItemFromCart(userId, productId);
+    if (res.removed === 0) {
+      return { ok: false, code: res.reason ?? 'NOT_IN_CART' };
+    }
+    revalidatePath('/cart');
+    return { ok: true };
+  } catch (e) {
+    console.error('removeFromCart error', e);
+    return { ok: false, code: 'SERVER_ACTION_ERROR' };
+  }
 }
 
 export async function setQuantity(productId, qty) {
-  const { cartId } = await getCartId();
   try {
-    if (qty <= 0) return removeFromCart(productId);
-    const r = await setCartItemQty(cartId, productId, qty);
-    if (r?.ok) return r;
+    const userId = await getUserId();
+    if (!userId) {
+      return { ok: false, code: 'UNAUTHENTICATED' };
+    }
+    if (qty <= 0) {
+      return removeFromCart(productId);
+    }
+    const res = await setCartItemQty(userId, productId, qty);
+    if (res.count === 0) {
+      return { ok: false, code: 'NOT_IN_CART' };
+    }
     revalidatePath('/cart');
-
-    return { ok: true };
+    return { ok: true, quantity: qty };
   } catch (e) {
-    console.error('setQuantity error', { cartId, productId, qty, e });
+    console.error('setQuantity error', { productId, qty, e });
     return { ok: false, code: 'SERVER_ACTION_ERROR' };
   }
 }

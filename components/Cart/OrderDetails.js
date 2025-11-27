@@ -1,11 +1,11 @@
 import s from './Cart.module.scss';
-import { getCartId } from '@/lib/cart-cookie';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
 import PayButton from './PayButton';
+import getUserId from '@/lib/utils/userId';
 
 export default async function OrderDetails() {
-  const { cartId } = await getCartId();
-  const items = await getCartItems(cartId);
+  const userId = await getUserId();
+  const items = await getCartItems(userId);
 
   const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
   // TODO: implement discount and promo codes in DB
@@ -28,7 +28,7 @@ export default async function OrderDetails() {
       <div className={s.details__total}>
         <strong>Total — {total.toLocaleString('en-US')} USD</strong>
       </div>
-      <PayButton cartId={cartId} total={total} />
+      <PayButton userId={userId} total={total} />
     </div>
   );
 }

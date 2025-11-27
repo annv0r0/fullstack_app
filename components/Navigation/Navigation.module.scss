@@ -2,21 +2,20 @@
 
 .menuButton {
   display: none;
-  cursor: pointer;
   padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .left__items {
-  display: flex;
-  gap: 20px;
   position: relative;
 }
 
 .nav__items {
   display: flex;
-  padding: 10px 20px;
   gap: 20px;
-  z-index: 10;
+  padding: 10px 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -25,17 +24,24 @@
   }
 
   .nav__items {
-    flex-direction: column;
-    background-color: $white;
-    gap: 20px;
     position: absolute;
     top: calc(100% + 10px);
     left: 0;
+    flex-direction: column;
+    background-color: $white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     min-width: 150px;
+    max-height: 500px;
+    opacity: 1;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      max-height 0.3s ease;
   }
 
-  .left__items_closed {
-    display: none;
+  .closed {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
   }
 }

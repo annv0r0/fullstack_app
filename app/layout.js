@@ -20,8 +20,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const S3_IMG_URL = `${process.env.NEXT_PUBLIC_S3_BUCKET}/images/menu.png`;
-
   return (
     <html lang="en">
       <body className={`${geistSans.className} ${geistMono.className}`}>

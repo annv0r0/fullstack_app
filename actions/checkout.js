@@ -1,26 +1,16 @@
 'use server';
-
-import { cookies } from 'next/headers';
-import { notFound } from 'next/navigation';
-
 // import Stripe from 'stripe';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
-import { getCartId } from '@/lib/cart-cookie';
-import { redirect } from 'next/navigation';
 import { addOrder } from '@/lib/server/db/SQL/orders';
-import getUserId from '@/lib/userId';
+import { revalidatePath } from 'next/cache';
 // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export async function startCheckout(cartId) {
-  const items = await getCartItems(cartId);
-  const userId = await getUserId();
+export async function startCheckout(userId) {
+  const items = await getCartItems(userId);
 
-  const order = await addOrder(cartId, userId);
-  if (order?.id) {
-    const cookieJar = await cookies();
-    cookieJar.set('cartId', '', { expires: new Date(0) });
-  }
-  // notFound();
+  const order = await addOrder(userId);
+  revalidatePath('/cart');
+  return { ok: true };
 
   // const session = await stripe.checkout.sessions.create({
   //   payment_method_types: ['card'],
