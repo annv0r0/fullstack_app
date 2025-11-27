@@ -1,7 +1,7 @@
 import { getOrders } from '@/lib/server/db/SQL/orders';
 import s from './page.module.scss';
 import OrderItem from '@/components/Orders/OrderItem';
-import getUserId from '@/lib/userId';
+import getUserId from '@/lib/utils/userId';
 
 export default async function History() {
   const userId = await getUserId();

@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getCartId } from '@/lib/cart-cookie';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
 import s from './Cart.module.scss';
 import { auth } from '@/auth';
+import getUserId from '@/lib/utils/userId';
 
 export default async function CartIcon() {
   const session = await auth();
+
   if (!session) return null;
-  const { cartId } = await getCartId();
-  const items = await getCartItems(cartId);
+
+  const userId = await getUserId();
+  const items = await getCartItems(userId);
   const totalCount = Array.isArray(items) ? items.reduce((sum, i) => sum + i.quantity, 0) : 0;
 
   return (

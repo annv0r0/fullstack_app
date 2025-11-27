@@ -6,7 +6,7 @@ import { removeFromCart } from '@/actions/cart';
 import clsx from 'clsx';
 import s from './Cart.module.scss';
 
-export default function ButtonRemoveFromCart({ productId, cart }) {
+export default function ButtonRemoveFromCart({ productId, isCart }) {
   const [pending, start] = useTransition();
   const router = useRouter();
 
@@ -18,7 +18,7 @@ export default function ButtonRemoveFromCart({ productId, cart }) {
   }
 
   return (
-    <button className={clsx(cart && s.cart__remove)} disabled={pending} onClick={handleClick}>
+    <button className={clsx(isCart && s.cart__remove)} disabled={pending} onClick={handleClick}>
       {pending ? 'Removing…' : 'Remove'}
     </button>
   );

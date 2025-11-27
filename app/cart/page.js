@@ -1,14 +1,14 @@
-import { getCartId } from '@/lib/cart-cookie';
 import { getCartItems } from '@/lib/server/db/SQL/cart';
 import ButtonRemoveFromCart from '@/components/Cart/ButtonRemoveFromCart';
 import Quantity from '@/components/Cart/Quantity';
 import s from './page.module.scss';
 import CartItem from '@/components/Cart/CartItem';
 import OrderDetails from '@/components/Cart/OrderDetails';
+import getUserId from '@/lib/utils/userId';
 
 export default async function CartPage() {
-  const { cartId } = await getCartId();
-  const items = await getCartItems(cartId);
+  const userId = await getUserId();
+  const items = await getCartItems(userId);
 
   if (!items.length)
     return (
@@ -27,7 +27,7 @@ export default async function CartPage() {
           <form className={s.form} key={i.productId}>
             <CartItem i={i} />
             <Quantity productId={i.productId} quantity={i.quantity} price={Number(i.price)} />
-            <ButtonRemoveFromCart productId={i.productId} cart={true} />
+            <ButtonRemoveFromCart productId={i.productId} isCart={true} />
           </form>
         ))}
       </div>
