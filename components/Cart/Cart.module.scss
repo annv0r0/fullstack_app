@@ -1,11 +1,11 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables';
+@use 'mixins';
 
 .cart__icon {
   width: 30px;
   height: 30px;
   &:hover {
-    @include hover;
+    @include mixins.hover;
   }
 }
 .item {
@@ -93,8 +93,8 @@
 
 .cart__amount {
   padding: 2px 6px;
-  background: $brown;
-  color: $white;
+  background: variables.$brown;
+  color: variables.$white;
   font-size: 0.7rem;
 }
 

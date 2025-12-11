@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables';
 
 .order {
   background-color: #232122;
@@ -54,7 +54,7 @@
 }
 
 .order__statusPAID {
-  background-color: $green;
+  background-color: variables.$green;
 }
 
 .order__statusPENDING {
@@ -175,5 +175,5 @@
 }
 
 .order__discount {
-  color: $green !important;
+  color: variables.$green !important;
 }

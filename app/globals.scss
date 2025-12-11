@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables';
 
 html,
 body {
@@ -7,8 +7,8 @@ body {
 }
 
 body {
-  color: $foreground;
-  background: $background;
+  color: variables.$foreground;
+  background: variables.$background;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
