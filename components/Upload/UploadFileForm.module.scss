@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables';
+@use 'mixins';
 
 .form {
   display: flex;
@@ -41,7 +41,7 @@
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background: $white-hover;
+    background: variables.$white-hover;
   }
 }
 
@@ -60,7 +60,7 @@
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background: $white-hover;
+    background: variables.$white-hover;
   }
 }
 
@@ -71,22 +71,22 @@
 }
 
 .form__btn {
-  @include button__send;
+  @include mixins.button__send;
 
   &:hover {
-    @include hover;
+    @include mixins.hover;
   }
 }
 
 .success {
-  color: $green;
+  color: variables.$green;
   font-size: large;
   margin: 20px auto;
   font-style: italic;
 }
 
 .error {
-  color: $brown;
+  color: variables.$brown;
   font-size: large;
   margin: 20px auto;
   font-style: italic;

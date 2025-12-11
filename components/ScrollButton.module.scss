@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables';
+@use 'mixins';
 
 .scroll {
   position: absolute;
@@ -8,11 +8,11 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 3px solid $gold;
+  border: 3px solid variables.$gold;
   background: transparent;
   cursor: pointer;
-  color: $gold;
+  color: variables.$gold;
   &:hover {
-    @include hover;
+    @include mixins.hover;
   }
 }

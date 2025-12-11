@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables';
 
 .menuButton {
   display: none;
@@ -28,7 +28,7 @@
     top: calc(100% + 10px);
     left: 0;
     flex-direction: column;
-    background-color: $white;
+    background-color: variables.$white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     min-width: 150px;
     max-height: 500px;

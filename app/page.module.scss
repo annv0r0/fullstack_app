@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'variables';
+@use 'mixins';
+@use 'variables';
 
 .hero__title {
   font-size: 3.2rem;
@@ -44,28 +44,28 @@
   font-size: 1.15rem;
   line-height: 25px;
   letter-spacing: 0.15px;
-  background: $gray-alpha-100;
-  border: 1px solid $gray-alpha-200;
+  background: variables.$gray-alpha-100;
+  border: 1px solid variables.$gray-alpha-200;
   border-radius: 12px;
 }
 
 .content__list {
   list-style-position: inside;
   padding-left: 20px;
-  border-left: 2px solid $gray-alpha-200;
+  border-left: 2px solid variables.$gray-alpha-200;
   margin-left: 20px;
 
   li {
     margin-bottom: 15px;
 
     &::marker {
-      color: $green;
+      color: variables.$green;
     }
   }
 }
 
 .content__textLink {
-  @include textLink;
+  @include mixins.textLink;
 }
 .notfound {
   display: flex;

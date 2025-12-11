@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables';
 
 @mixin textLink {
   font-size: 0.9rem;
@@ -22,8 +22,8 @@
 }
 
 @mixin button__send {
-  background: $brown;
-  color: $white;
+  background: variables.$brown;
+  color: variables.$white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
@@ -33,6 +33,6 @@
 }
 
 @mixin hover {
-  color: $white-hover;
+  color: variables.$white-hover;
   opacity: 0.6;
 }

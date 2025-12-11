@@ -1,4 +1,4 @@
-@import 'mixins';
+@use 'mixins';
 
 .container {
   display: flex;
@@ -37,7 +37,7 @@
 }
 
 .exampleLink {
-  @include textLink;
+  @include mixins.textLink;
 }
 
 @media (max-width: 768px) {
